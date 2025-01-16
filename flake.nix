@@ -17,9 +17,7 @@
         inputs.snowfall-lib.mkFlake {
             inherit inputs;
             channels-config = {
-                buildPlatform.system = "x86_64-linux";
-                hostPlatform.system = "aarch64-linux";
-                
+                crossSystem.system = "aarch64-unknown-linux-gnu";
             };
             src = ./.;
         };
