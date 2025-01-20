@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, modulesPath, ... }:
+{ lib, pkgs, inputs, modulesPath, system, ... }:
 {
   imports = [
     "${modulesPath}/installer/sd-card/sd-image.nix"
@@ -50,9 +50,6 @@
     allowedTCPPorts = [ 80 443 22 ];
   };
   system.stateVersion = "24.11";
-  services.httpd = {
-    enable = true;
-  };
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
   boot.initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
   boot.loader.grub.enable = false;
@@ -64,5 +61,60 @@
     backupFileExtension = ".bkp";
   };
   programs.git.enable = true;
+  services.phpfpm = {
+    phpPackage = pkgs.php84;
+  };
+  services.httpd = {
+    enable = true;
+    enablePHP = true;
+    virtualHosts = {
+      localhost = {
+        documentRoot = "${inputs.drupal-website.packages.${system}.default}/share/php/my-drupal-site/web/";
+        
+        listen = [
+          {
+            ip = "*";
+            port = 80;
+          }
+        ];
+      };
+    };
+    extraConfig = ''
+      SetEnv DATABASE_URL postgres://postgres@127.0.0.1/drupal-site
+    '';
+  };
+  # security.acme = {
+  #   acceptTerms = true;
+  #   defaults.email = "tiagodinis33@proton.me";
+  #   certs."cloud.pictonio.com" = {
+  #     dnsProvider = "inwx";
+  #     # Supplying password files like this will make your credentials world-readable
+  #     # in the Nix store. This is for demonstration purpose only, do not use this in production.
+  #     environmentFile = "${pkgs.writeText "inwx-creds" ''
+  #       INWX_USERNAME=xxxxxxxxxx
+  #       INWX_PASSWORD=yyyyyyyyyy
+  #     ''}";
+  #   };
+  # };
   
+
+  systemd.services.httpd.serviceConfig.User = lib.mkForce "root";
+
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "drupal-site" ];
+    enableTCPIP = true;
+    port = 5432;
+    
+    authentication = pkgs.lib.mkOverride 10 ''
+      #...
+      #type database DBuser origin-address auth-method
+      local all       all     trust
+      # ipv4
+      host  all      all     127.0.0.1/32   trust
+      # ipv6
+      host all       all     ::1/128        trust
+    '';
+  };
+
 }

@@ -16,7 +16,6 @@
         
         drupal-website = {
             url = "github:coffeeispower/my-drupal-site";
-            flake = false;
         };
         stylix = {
           url = "github:danth/stylix/master";

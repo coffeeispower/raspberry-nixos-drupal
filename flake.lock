@@ -252,11 +252,11 @@
     "drupal-website": {
       "flake": false,
       "locked": {
-        "lastModified": 1736519968,
-        "narHash": "sha256-4JVV27cseFFZI9/uNySgn+a3Qd1ogFOPEs6hbbAyld0=",
+        "lastModified": 1737379595,
+        "narHash": "sha256-+KDARYwNR9LHE/EbQp+BTo6N+dg8Zg0N4BhvPLG2OEY=",
         "owner": "coffeeispower",
         "repo": "my-drupal-site",
-        "rev": "14d6793b7762a383a872c6d57b84dc2546261c9d",
+        "rev": "44d71410294068585f04b53decd81ecf7edde132",
         "type": "github"
       },
       "original": {
