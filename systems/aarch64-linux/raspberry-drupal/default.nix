@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, modulesPath, system, ... }:
+{ lib, pkgs, inputs, modulesPath, system, config, ... }:
 {
   imports = [
     "${modulesPath}/installer/sd-card/sd-image.nix"
@@ -68,7 +68,7 @@
     enable = true;
     enablePHP = true;
     virtualHosts = {
-      localhost = {
+      localhost = rec {
         documentRoot = "${inputs.drupal-website.packages.${system}.default}/share/php/my-drupal-site/web/";
         
         listen = [
@@ -77,11 +77,34 @@
             port = 80;
           }
         ];
+
+        extraConfig = 
+      	''
+  	      DirectoryIndex index.php index.htm index.html
+          <Directory "${documentRoot}">
+      	      Allow from *
+              Options FollowSymLinks
+              AllowOverride All
+           </Directory>
+        ''; 
       };
     };
+    extraModules = [
+      {
+        name = "rewrite";
+        path = "${pkgs.apacheHttpd}/modules/mod_rewrite.so";
+      }
+    ];
     extraConfig = ''
-      SetEnv DATABASE_URL postgres://postgres@127.0.0.1/drupal-site
+      SetEnv DATABASE_URL postgres://postgres:@127.0.0.1/drupal-site
     '';
+
+    
+  };
+  systemd.tmpfiles.settings = {
+    "drupal_sites_default_files" = {
+      "/var/drupal/files" = {d.mode = "0777";};
+    };
   };
   # security.acme = {
   #   acceptTerms = true;

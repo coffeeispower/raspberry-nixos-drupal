@@ -250,13 +250,16 @@
       }
     },
     "drupal-website": {
-      "flake": false,
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": "nixpkgs_4"
+      },
       "locked": {
-        "lastModified": 1737379595,
-        "narHash": "sha256-+KDARYwNR9LHE/EbQp+BTo6N+dg8Zg0N4BhvPLG2OEY=",
+        "lastModified": 1737396514,
+        "narHash": "sha256-Tngmb/3dSDoeCNU8QtdLJljeHbEYcHIO/5eb8Z0K+Ek=",
         "owner": "coffeeispower",
         "repo": "my-drupal-site",
-        "rev": "44d71410294068585f04b53decd81ecf7edde132",
+        "rev": "21b87edf5e5772e99e66a51ea889c954bbd745cd",
         "type": "github"
       },
       "original": {
@@ -471,7 +474,7 @@
     },
     "flake-utils-plus_2": {
       "inputs": {
-        "flake-utils": "flake-utils_4"
+        "flake-utils": "flake-utils_5"
       },
       "locked": {
         "lastModified": 1715533576,
@@ -529,6 +532,24 @@
         "systems": "systems_6"
       },
       "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_5": {
+      "inputs": {
+        "systems": "systems_7"
+      },
+      "locked": {
         "lastModified": 1694529238,
         "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
         "owner": "numtide",
@@ -542,7 +563,7 @@
         "type": "github"
       }
     },
-    "flake-utils_5": {
+    "flake-utils_6": {
       "inputs": {
         "systems": [
           "stylix",
@@ -1205,6 +1226,22 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1737378172,
+        "narHash": "sha256-UmX1zf/56aOBf7mU2L/nUHdwrk1t/SLxolFbFS3Cojk=",
+        "owner": "coffeeispower",
+        "repo": "nixpkgs",
+        "rev": "58173c0ce6bba90980bbd321397fc7d2f7a63cc6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "coffeeispower",
+        "ref": "fix-buildComposerProject",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1736916166,
         "narHash": "sha256-puPDoVKxkuNmYIGMpMQiK8bEjaACcCksolsG36gdaNQ=",
         "owner": "nixos",
@@ -1249,7 +1286,7 @@
         "coffeeispower-nix-config": "coffeeispower-nix-config",
         "drupal-website": "drupal-website",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "snowfall-lib": "snowfall-lib_2",
         "stylix": "stylix"
       }
@@ -1361,7 +1398,7 @@
         "base16-vim": "base16-vim",
         "firefox-gnome-theme": "firefox-gnome-theme",
         "flake-compat": "flake-compat_7",
-        "flake-utils": "flake-utils_5",
+        "flake-utils": "flake-utils_6",
         "git-hooks": "git-hooks",
         "gnome-shell": "gnome-shell",
         "home-manager": [
@@ -1370,7 +1407,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_7",
+        "systems": "systems_8",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
         "tinted-tmux": "tinted-tmux",
@@ -1505,6 +1542,21 @@
       }
     },
     "systems_7": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_8": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
